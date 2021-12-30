@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" >
+<head >
+    <meta charset="UTF-8">
+    <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css">
+    <script th:src="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
+    <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header"><h4 th:text="#{signup.titulo}">Registro</h4></div>
+                    <div class="card-body">
+                        <form th:action="@{/signup}" th:object="${studentdto}" method="POST">
+                            <div class="row form-group">
+                                <label class="col-md-3" th:text="#{signup.email}">Email</label>
+                                <input type="text" class="form-control-col-md7" th:field="*{email}">
+<!--                                <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>-->
+                            </div>
+
+                            <div class="row form-group">
+                                <label class="col-md-3" th:text="#{signup.nombre}">Name</label>
+                                <input type="text" class="form-control-col-md7" th:field="*{name}">
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-md-3" th:text="#{signup.apellido}">Last Name</label>
+                                <input type="text" class="form-control-col-md7" th:field="*{lastName}">
+                            </div>
+                            <div class="row form-group">
+                                <label class="col-md-3" th:text="#{signup.contrasena}">Password</label>
+                                <input type="password" class="form-control-col-md7" th:field="*{password}">
+                            </div>
+                            <div class="row form-group">
+                                <input th:value="#{signup.boton}" type="submit" class="btn btn-success btn-block col-md-7 offset-3" value="Continuar">
+                            </div>
+
+
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

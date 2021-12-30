@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.w3.org/1999/xhtml" >
+<head >
+  <meta charset="UTF-8">
+  <link th:href="@{/css/bootstrap.css}" rel="stylesheet" href="../static/css/bootstrap.css">
+  <script th:src="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
+  <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
+  <title>Login</title>
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div th:if="${param.error}" class="alert alert-danger mb-3">Credenciales incorrectas</div>
+        <div class="card">
+          <div class="card-header"><h4 th:text="#{login.titulo}" >Iniciar sesión</h4></div>
+          <div class="card-body">
+
+            <form id="loginform" method="POST" th:action="@{/login-post}" role="form">
+              <div class="row form-group">
+                <label class="col-md-3" th:text="#{login.email}">Email</label>
+                <input type="email" name="username" class="form-control col-md-7"/>
+              </div>
+
+              <div class="row form-group">
+                <label class="col-md-3" th:text="#{login.password}">Contraseña</label>
+                <input type="password" name="password" class="form-control col-md-7"/>
+              </div>
+
+              <div class="row form-group">
+                <input th:value="#{login.boton}" type="submit" class="btn btn-success btn-block col-md-7 offset-3" />
+              </div>
+
+            </form>
+            <a th:text="#{login.registro}" th:href="@{/signup}">Registro</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
