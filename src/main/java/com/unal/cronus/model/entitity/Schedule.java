@@ -1,37 +1,31 @@
 package com.unal.cronus.model.entitity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-@ToString
 @Entity
-@Table(name = "schedules")
+@Table(name = "schedule")
 public class Schedule implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idSchedule;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "schedule_has_group",
+            joinColumns = @JoinColumn(name = "schedule_id", referencedColumnName = "idSchedule"),
+            inverseJoinColumns = {@JoinColumn(name = "grupo_number", referencedColumnName = "number"),
+                    @JoinColumn(name = "subject_code", referencedColumnName = "subject_code")}
+    )
+    private List<Grupo> grupos;
 
     public Schedule(Integer idSchedule) {
         this.idSchedule = idSchedule;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Schedule schedule = (Schedule) o;
-        return idSchedule.equals(schedule.idSchedule);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(idSchedule);
     }
 }

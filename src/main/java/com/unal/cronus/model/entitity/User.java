@@ -13,7 +13,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "users")
+@Table(name = "user")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class User implements Serializable {
     @Id
@@ -27,7 +27,6 @@ public abstract class User implements Serializable {
     @Column(columnDefinition = "ENUM('ADMIN','STUDENT')")
     @Enumerated(EnumType.STRING)
     private TypeUser typeUser;
-    @JsonIgnoreProperties({"schedule"})
 
     public User(String email, String name, String lastName, String password, TypeUser typeUser) {
         this.email = email;
