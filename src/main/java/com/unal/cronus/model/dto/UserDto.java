@@ -5,26 +5,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Data
 @AllArgsConstructor
-/*@JsonTypeInfo(
-        use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "type"
-)
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = StudentDto.class, name = "student")
-})*/
 @NoArgsConstructor
 public abstract class UserDto {
-    @Email
+    @Email(message = "Ingrese una dirección de correo eletrónico valida.")
+    @NotEmpty(message = "Este campo no puede quedar vacio.")
     private String email;
-    @NotEmpty
+
+    @Size(min = 2,max = 20,message = "Este campo debe tener mas de 3 letras y menos de 20.")
     private String name;
-    @NotEmpty
+
+    @Size(min = 2,max = 20,message = "Este campo debe tener mas de 3 letras y menos de 20.")
     private String lastName;
-    @NotEmpty
+    @NotEmpty(message = "Este campo no puede quedar vacio.")
     private String password;
     private String typeUser;
 }

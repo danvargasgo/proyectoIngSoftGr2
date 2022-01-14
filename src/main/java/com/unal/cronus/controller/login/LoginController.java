@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @ConditionalOnProperty(prefix = "app", name = "controller.enable-dto", havingValue = "true")
@@ -31,13 +32,13 @@ public class LoginController {
 
     @GetMapping("/signup")
     public String registroForm(Model model){
-        model.addAttribute("studentdto",new StudentDto());
+        model.addAttribute("studentDto",new StudentDto());
         return "signup";
     }
     @PostMapping("/signup")
-    public String registro(@Valid @ModelAttribute StudentDto studentDto, BindingResult result,Model model){
+    public String registro(@Valid StudentDto studentDto, BindingResult result,Model model){
         if(result.hasErrors()){
-            return "redirect:/signup";
+            return "/signup";
         }
         else{
 
