@@ -30,7 +30,7 @@
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown button
+                    Ingenieria de Software
                 </button>
                 <ul class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="#">Action</a></li>
@@ -38,7 +38,7 @@
                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                 </ul>
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown button
+                    Matematica Discreta 1
                 </button>
                 <ul class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton1">
                     <li><a class="dropdown-item" href="#">Action</a></li>
@@ -80,9 +80,9 @@
                     <tbody>
                     <tr>
                         <td>7am - 9am</td>
-                        <td>Calculo Diferencial Pepe Galindo</td>
+                        <td>Calculo Diferencial Santiago Rodriguez</td>
                         <td></td>
-                        <td>Calculo Diferencial Pepe Galindo</td>
+                        <td>Calculo Diferencial Santiago Rodriguez</td>
                         <td></td>
                         <td></td>
                     </tr>
@@ -100,7 +100,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td>Ingles Intensivo Pepe Tamayo</td>
+                        <td>Ingles Intensivo Daniel Vargas</td>
                     </tr>
                     <tr>
                         <td>2pm - 4pm</td>
@@ -141,8 +141,9 @@
             <br>
             <br>
             <form th:action="@{/private/student}" method="post">
-                <label>Etiqueta campo de busqueda por nombre</label>
+                <label>Ingresa el nombre de la asignatura</label>
                 <input class="mw-100" type="text" th:name="keyword" th:value="${param.keyword}" placeholder="Buscar Por Nombre"/>
+                <br>
                 <input class="mw-100" type="submit" placeholder="Buscar"/>
             </form>
 
