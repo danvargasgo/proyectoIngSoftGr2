@@ -43,7 +43,7 @@ public class LoginController {
         else{
 
             Student usuario = studentMapper.mapStudent(studentDto);
-            usuario.setSchedule(new Schedule(5));
+            usuario.setSchedule(new Schedule());
             usuario.setTypeUser(TypeUser.STUDENT);
             model.addAttribute("user",userService.save(usuario));
             return "redirect:/login";

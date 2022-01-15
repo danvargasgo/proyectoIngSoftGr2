@@ -24,7 +24,7 @@ public abstract class User implements Serializable {
     private String lastName;
     @Column(nullable = false,unique = true)
     private String password;
-    @Column(columnDefinition = "ENUM('ADMIN','STUDENT')")
+    @Column(columnDefinition = "ENUM('ADMIN','STUDENT','TEACHER')")
     @Enumerated(EnumType.STRING)
     private TypeUser typeUser;
 

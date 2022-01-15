@@ -30,8 +30,8 @@ public class PrivateController {
             return "redirect:/private/student";
         }
         else if (type.equals("ADMIN")){
-            return "admin";
+            return "redirect:/private/admin";
         }
-        return "index";
+        return "redirect:/private/teacher";
     }
 }
