@@ -27,6 +27,6 @@ public class StudentController{
     @GetMapping("/subject/{code}")
     public String showSubjectPage(@PathVariable("code") int code, Model model){
         model.addAttribute("subject",subjectService.searchSubjectsByCode(code));
-        return "subjectdemo";
+        return "subject";
     }
 }

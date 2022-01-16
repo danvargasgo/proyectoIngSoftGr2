@@ -3,6 +3,7 @@ package com.unal.cronus.controller.login;
 import com.unal.cronus.model.dto.StudentDto;
 import com.unal.cronus.model.entitity.Schedule;
 import com.unal.cronus.model.entitity.Student;
+import com.unal.cronus.model.entitity.Teacher;
 import com.unal.cronus.model.enums.TypeUser;
 import com.unal.cronus.model.mapper.StudentMapper;
 import com.unal.cronus.model.service.UserService;
@@ -34,7 +35,14 @@ public class LoginController {
     public String registroForm(Model model){
         model.addAttribute("studentDto",new StudentDto());
         return "signup";
-    }
+    }/*
+
+    @GetMapping("/signup")
+    public String registroForm(Model model){
+        model.addAttribute("studentDto",new Teacher());
+        return "signup";
+    }*/
+
     @PostMapping("/signup")
     public String registro(@Valid StudentDto studentDto, BindingResult result,Model model){
         if(result.hasErrors()){
@@ -49,6 +57,16 @@ public class LoginController {
             return "redirect:/login";
         }
     }
+    /*
+        @PostMapping("/signup")
+        public String registro(Teacher teacher, Model model){
+            Teacher teacher2= teacher;
+
+                teacher2.setTypeUser(TypeUser.TEACHER);
+                model.addAttribute("user",userService.save(teacher2));
+                return "redirect:/login";
+
+        }*/
     @GetMapping("/login")
     public String loginForm(Model model){
         model.addAttribute("user",new StudentDto());
