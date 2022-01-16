@@ -5,10 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/public")
-public class PublicController {
-    @GetMapping("/index")
-    public String index(){
-        return "redirect:/login";
+@RequestMapping("/private/admin")
+public class AdminController {
+
+    @GetMapping()
+    public String showStudentMainPage(){
+        return "admin";
     }
 }

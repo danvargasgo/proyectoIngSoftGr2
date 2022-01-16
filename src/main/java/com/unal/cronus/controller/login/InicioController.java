@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class InicioController {
     @GetMapping("/")
     public String inicio(){
-        return "login";
+        return "redirect:/login";
     }
 }

@@ -21,24 +21,17 @@ public class PrivateController {
     }
     @GetMapping()
     public String index(Authentication auth, HttpSession session){
-        /*String username = auth.getName();
-        if(session.getAttribute("studentdto") == null){
-            Optional<User> oUser= userService.findById(username);
-            User user = oUser.get();
-            user.setPassword(null);
-            session.setAttribute("studentdto",user);
-        }*/
 
         String email = auth.getName();
         Optional<User> oUser= userService.findById(email);
         User user = oUser.get();
         String type = user.getTypeUser().toString();
         if(type.equals("STUDENT")){
-            return "student";
+            return "redirect:/private/student";
         }
         else if (type.equals("ADMIN")){
-            return "admin";
+            return "redirect:/private/admin";
         }
-        return "index";
+        return "redirect:/private/teacher";
     }
 }

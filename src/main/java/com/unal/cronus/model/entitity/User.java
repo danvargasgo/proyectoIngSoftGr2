@@ -22,9 +22,9 @@ public abstract class User implements Serializable {
     private String name;
     @Column(nullable = false, length = 60)
     private String lastName;
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false)
     private String password;
-    @Column(columnDefinition = "ENUM('ADMIN','STUDENT')")
+    @Column(columnDefinition = "ENUM('ADMIN','STUDENT','TEACHER')")
     @Enumerated(EnumType.STRING)
     private TypeUser typeUser;
 

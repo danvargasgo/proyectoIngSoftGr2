@@ -7,7 +7,8 @@ import java.io.Serializable;
 
 @NoArgsConstructor
 @EqualsAndHashCode
-public class LlaveGrupo implements Serializable {
-    private int number;
+public class LlaveStudentHasSubject implements Serializable {
+    
+    private Student student;
     private Subject subject;
 }

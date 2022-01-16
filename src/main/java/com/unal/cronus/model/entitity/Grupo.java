@@ -13,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "grupo")
+@IdClass(LlaveGrupo.class)
 public class Grupo implements Serializable {
     @Id
     private int number;
