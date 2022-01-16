@@ -19,8 +19,12 @@ public class StudentController{
     }
 
     @PostMapping()
-    public String searchSubjects(@RequestParam("keyword") String keyword, Model model){
-        model.addAttribute("subjects",subjectService.searchSubjectsByName(keyword));
+    public String searchSubjects(@RequestParam("keyword") String keyword,@RequestParam("code") String code, Model model){
+        if (code!="") {
+            model.addAttribute("subjects", subjectService.searchSubjectsByCode(Integer.parseInt(code)));
+        } else {
+            model.addAttribute("subjects",subjectService.searchSubjectsByName(keyword));
+        }
         return "student";
     }
 
