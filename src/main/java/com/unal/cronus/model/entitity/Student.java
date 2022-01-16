@@ -26,14 +26,11 @@ public class Student extends User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private List<Question> questions;
+    
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "student_has_subject",
-            joinColumns = @JoinColumn(name = "student_email", referencedColumnName = "email"),
-            inverseJoinColumns = @JoinColumn(name = "subject_code", referencedColumnName = "code")
-    )
-    private List<Subject> subjects;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
+    private List<StudentHasSubject> studentHasSubject;
+    
 
     public Student(String email, String name, String lastName, String password, TypeUser typeUser, Schedule schedule) {
         super(email, name, lastName, password, typeUser);
