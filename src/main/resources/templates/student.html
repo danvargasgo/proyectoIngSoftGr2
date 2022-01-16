@@ -16,11 +16,11 @@
     <div class="row">
         <div class="col-8 border border-dark">
 
-            <div class="container border border-dark" style="background-color:#d1d1e0">
+            <div class="container border border-dark mt-3" style="background-color:#d1d1e0">
                 <h6>Asignaturas Seleccionadas</h6>
             </div>
 
-            <div class="container border border-info" style="overflow-x:auto;white-space: nowrap;">
+            <div class="container border border-dark " style="overflow-x:auto;white-space: nowrap;">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                     Calculo En Varias Variables
                 </button>
@@ -64,7 +64,7 @@
             </div>
 
             <br>
-            <div class="table-responsive border border-warning">
+            <div class="table-responsive ">
                 <table class="table table-bordered border-dark">
                     <thead>
                     <tr>
@@ -133,7 +133,7 @@
         </div>
 
         <div class="col-4 border border-dark">
-            <div class="container border border-dark" style="background-color:#d1d1e0">
+            <div class="container border border-dark mt-3" style="background-color:#d1d1e0">
                 <h6>Buscar Asignaturas</h6>
             </div>
             <p align="justify">Ingresa un nombre o codigo de la asignatura que quieras buscar</p>
@@ -141,12 +141,22 @@
             <br>
             <br>
             <form th:action="@{/private/student}" method="post">
-                <label>Ingresa el nombre de la asignatura</label>
-                <input class="mw-100" type="text" th:name="keyword" th:value="${param.keyword}" placeholder="Buscar Por Nombre"/>
-                <br>
-                <input class="mw-100" type="submit" placeholder="Buscar"/>
-            </form>
 
+                <label>Ingresa el código de la asignatura:</label>
+                <center>
+                <input class="mw-100 mt-2" type="number" th:name="code" th:value="${param.code}" placeholder="Buscar Por Código">
+                </center>
+                <br>
+                <label >Ingresa el nombre de la asignatura:</label>
+                <center>
+                <input class="mw-100 mt-2" type="text" th:name="keyword" th:value="${param.keyword}" placeholder="Buscar Por Nombre"/>
+                </center>
+                <br>
+                <center>
+                <input class="mw-100 btn btn-dark" type="submit" placeholder="Buscar"/>
+                </center>
+            </form>
+            <br>
             <p>Asignaturas encontradas:</p>
             <div class="table-responsive">
                 <table class="table table-bordered border-dark">
@@ -171,7 +181,7 @@
 </body>
 <div class="container">
     <form th:action="@{/logout}" method="POST">
-        <button type="submit" class="btn btn-primary mt-3">Cerrar Sesion</button>
+        <button type="submit" class="btn btn-dark mt-3">Cerrar Sesion</button>
     </form>
 </div>
 </html>
