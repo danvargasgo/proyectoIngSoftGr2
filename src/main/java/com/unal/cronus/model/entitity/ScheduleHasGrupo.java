@@ -17,7 +17,7 @@ public class ScheduleHasGrupo implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "schedule_id", nullable = false, updatable = false)
+    @JoinColumn(name = "id_schedule", nullable = false, updatable = false)
     private Schedule schedule;
 
     @Id
