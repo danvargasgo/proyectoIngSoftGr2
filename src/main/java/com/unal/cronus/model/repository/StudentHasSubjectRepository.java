@@ -11,5 +11,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface StudentHasSubjectRepository extends JpaRepository<StudentHasSubject,LlaveStudentHasSubject> {
+public interface StudentHasSubjectRepository extends JpaRepository<StudentHasSubject,LlaveStudentHasSubject>{
+
+    @Query(value="SELECT * FROM student_has_subject where student_email = :email",
+        nativeQuery= true)
+    List<StudentHasSubject> searchByEmail(@Param("email") String email);
 }

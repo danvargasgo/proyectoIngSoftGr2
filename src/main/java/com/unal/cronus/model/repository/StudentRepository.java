@@ -13,4 +13,6 @@ import java.util.List;
 @Repository
 public interface StudentRepository extends JpaRepository<Student,String> {
 
+    @Query(value="SELECT * FROM student join user on id_user=email WHERE email = :email", nativeQuery = true)
+    Student searchById(@Param("email") String email);
 }
