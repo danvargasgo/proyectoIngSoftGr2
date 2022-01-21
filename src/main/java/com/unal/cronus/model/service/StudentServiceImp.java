@@ -30,4 +30,9 @@ public class StudentServiceImp implements StudentService{
     public void deleteById(String id) {
         studentRepository.deleteById(id);
     }
+
+    @Override
+    public Student searchById(String student_email) {
+        return studentRepository.searchById(student_email);
+    }
 }
