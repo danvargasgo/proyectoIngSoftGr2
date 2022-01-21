@@ -40,4 +40,10 @@ public class StudentController{
         model.addAttribute("subject",subjectService.searchSubjectsByCode(code));
         return "subject";
     }
+
+    @GetMapping("/addsubject/{student_email}/{subject_code}")
+    public String showSubjectPage(@PathVariable("student_email") String student_email, @PathVariable("subject_code") int subject_code, Model model){
+        //model.addAttribute("subject",subjectService.searchSubjectsByCode(subject_code))
+        return "redirect:/private/student";
+    }
 }

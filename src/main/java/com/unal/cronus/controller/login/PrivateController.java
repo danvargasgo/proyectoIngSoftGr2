@@ -26,6 +26,10 @@ public class PrivateController {
         Optional<User> oUser= userService.findById(email);
         User user = oUser.get();
         String type = user.getTypeUser().toString();
+
+        //Se guarda el usuario que accedio a la aplicacion en session con el nombre user
+        session.setAttribute("user",user);
+
         if(type.equals("STUDENT")){
             return "redirect:/private/student";
         }
