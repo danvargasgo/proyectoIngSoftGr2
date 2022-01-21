@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +30,8 @@ public class StudentController{
     private StudentHasSubjectService studentHasSubjectService;
 
     @GetMapping()
-    public String showStudentMainPage(){
+    public String showStudentMainPage(Model model, Authentication auth){
+        model.addAttribute("selectedsubjects", studentHasSubjectService.searchByEmail(auth.getName()));
         return "student";
     }
 

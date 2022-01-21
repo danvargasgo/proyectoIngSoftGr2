@@ -11,6 +11,6 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class LlaveStudentHasSubject implements Serializable {
     
-    private Student student;
-    private Subject subject;
+    private String student;
+    private int subject;
 }
