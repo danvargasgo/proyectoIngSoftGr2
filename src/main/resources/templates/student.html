@@ -22,50 +22,21 @@
 
             <div class="container border border-dark rounded-bottom" style="overflow-x:auto;white-space: nowrap;">
 
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Ingeniería de Software 1
+                <!-- Se usa el span para que tanto el boton como lista acceder a la asignatura, ademas da un
+                 poco de espacio entre las asignaturas-->
+                <span th:each="selectedsubject: ${selectedsubjects}">
+                <button th:text="${selectedsubject.subject.name}" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 </button>
                 <ul class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">G1: L:9-11;W:9-11 Richard Herrera</a></li>
-                    <li><a class="dropdown-item" href="#">G2: L:6-8;W:6-8 Liliana Olarte</a></li>
-                    <li><a class="dropdown-item" href="#">G3: J:9-11;V:9-11 Richard Herrera</a></li>
-
+                    <li th:each="grupo: ${selectedsubject.subject.grupos}">
+                        <a class="dropdown-item" th:text="'Grupo '+${grupo.number}"></a>
+                    </li>
                 </ul>
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Cálculo En Varias Variables
-                </button>
-                <ul class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Matemáticas Discretas 1
-                </button>
-                <ul class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Cálculo Diferencial
-                </button>
-                <ul class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                    Cálculo Integral
-                </button>
-                <ul class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
+                </span>
             </div>
 
             <br>
+
             <div class="table-responsive ">
                 <table class="table table-bordered border-dark">
                     <thead>
