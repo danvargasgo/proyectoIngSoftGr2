@@ -9,5 +9,5 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class LlaveGrupo implements Serializable {
     private int number;
-    private int subject;
+    private Subject subject;
 }
