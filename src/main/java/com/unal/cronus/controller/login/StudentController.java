@@ -36,7 +36,8 @@ public class StudentController{
     }
 
     @PostMapping()
-    public String searchSubjects(@RequestParam("keyword") String keyword,@RequestParam("code") String code, Model model){
+    public String searchSubjects(@RequestParam("keyword") String keyword,@RequestParam("code") String code, Model model, Authentication auth){
+        model.addAttribute("selectedsubjects", studentHasSubjectService.searchByEmail(auth.getName()));
         if ((code=="")&&(keyword=="")){
             model.addAttribute("subjects", new ArrayList<Subject>());
         }
