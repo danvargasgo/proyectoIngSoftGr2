@@ -37,4 +37,12 @@ public class Subject implements Serializable {
     //Relacion de uno a muchos con la tabla student_has_subject
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
     private List<StudentHasSubject> studentHasSubject;
+
+    public Subject(int code, String name, String credits, String description, String prerequisite) {
+        this.code = code;
+        this.name = name;
+        this.credits = credits;
+        this.description = description;
+        this.prerequisite = prerequisite;
+    }
 }
