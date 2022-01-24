@@ -8,6 +8,6 @@ import java.io.Serializable;
 @NoArgsConstructor
 @EqualsAndHashCode
 public class LlaveScheduleHasGrupo implements Serializable {
-    private Schedule schedule;
-    private Grupo grupo;
+    private int schedule;
+    private LlaveGrupo grupo;
 }
