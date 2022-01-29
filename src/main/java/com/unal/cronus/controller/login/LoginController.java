@@ -8,6 +8,7 @@ import com.unal.cronus.model.enums.TypeUser;
 import com.unal.cronus.model.mapper.StudentMapper;
 import com.unal.cronus.model.service.UserService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +17,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @ConditionalOnProperty(prefix = "app", name = "controller.enable-dto", havingValue = "true")
@@ -45,6 +48,7 @@ public class LoginController {
 
     @PostMapping("/signup")
     public String registro(@Valid StudentDto studentDto, BindingResult result,Model model){
+
         if(result.hasErrors()){
             return "/signup";
         }
@@ -57,6 +61,7 @@ public class LoginController {
             return "redirect:/login";
         }
     }
+
     /*
         @PostMapping("/signup")
         public String registro(Teacher teacher, Model model){

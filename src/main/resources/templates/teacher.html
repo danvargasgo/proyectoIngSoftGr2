@@ -11,29 +11,87 @@
   <link rel="stylesheet" th:href="@{/css/login.css}" href="../static/css/login.css">
 </head>
 <body>
-  <div align="center" class="container" pt-2>
+<div align="center" class="container" pt-2>
 
-    <h2>Selecciona una de tus asignaturas:</h2>
+  <!--<h2>Selecciona una de tus asignaturas:</h2>
 
-    <span th:each="subjects: ${subjects}">
-                <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                </button>
-                <ul class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton1">
-                    <li th:each="subject: ${subjects.subject}">
-                        <a class="dropdown-item" th:text="'Asignatura '+${subject.name}"></a>
-                    </li>
-                </ul>
-    </span>
+  <ul>
+    <li th:each="subject : ${subjects}">
+      <a th:href="@{/private/teacher/{code}(code=${subject.code})}">
+        <span th:text="${subject.name}"></span>
+    </li>
+  </ul>-->
+</div>
+<div class="container text-center">
+  <h2 >Tus grupos</h2>
+</div>
 
-    <h1>¿Qué deseas hacer?</h1>
+<div class="container ">
+  <div class="col-12 ">
+    <a class="btn btn-success mb-2" th:href="@{/private/teacher/group/save}">Agregar</a>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>Número</th>
+        <th>Salon</th>
+        <th>Hora</th>
+        <th>Codigo asignatura</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
 
-    <div class="row justify-content-around">
-      <button id="botonAgregar" class="btn btn-dark mt-3 mb-3 col-3">Agregar Grupo</button>
-      <button id="botonEditar"  class="btn btn-dark mt-3 mb-3 col-3">Editar Grupo</button>
-      <button id="botonEliminar"  class="btn btn-dark mt-3 mb-3 col-3">Eliminar Grupo</button>
-    </div>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="group : ${groups}">
+        <td th:text="${group.number}"></td>
+        <td th:text="${group.classroom}"></td>
+        <td th:text="${group.hours}"></td>
+        <td th:text="${group.subject.code}"></td>
+
+        <td>
+          <a class="btn btn-warning" th:href="@{/private/teacher/group/edit/{grupoNumber}/{grupoSubject}(grupoNumber=${group.number},grupoSubject=${group.subject.code})}">Editar </a>
+        </td>
+        <td>
+          <form th:action="@{/private/teacher/group/delete/}" method="post" >
+            <input th:name="number" type="hidden" name="number" th:value="${group.number}"/>
+            <input th:name="code"  type="hidden" name="code" th:value="${group.subject.code}"/>
+            <button type="submit" class="btn btn-danger">Eliminar
+            </button>
+          </form>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 
 
+
+
+<!--<a th:href="@{/private/student/subject/{code}(code=${subject.code})}">
+  <span th:text="${subject.name}"></span>-->
+
+
+
+<!--<span th:each="subject: ${subjects}">
+            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            </button>
+            <ul class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton1">
+                <li th:each="subject: ${subjects}">
+                    <a class="dropdown-item" th:text="'Asignatura '+${subject.name}"></a>
+                </li>
+            </ul>
+</span>-->
+
+<!--<h1>¿Qué deseas hacer?</h1>-->
+
+<!--<div class="row justify-content-around">
+  <button id="botonAgregar" class="btn btn-dark mt-3 mb-3 col-3">Agregar Grupo</button>
+  <button id="botonEditar"  class="btn btn-dark mt-3 mb-3 col-3">Editar Grupo</button>
+  <button id="botonEliminar"  class="btn btn-dark mt-3 mb-3 col-3">Eliminar Grupo</button>
+</div>-->
+
+<!--
     <form id="formAgregar"  style="display: none" method="POST" role="form">
       <div class="form-group">
         <label for="classroom" class="sr-only"></label>
@@ -57,8 +115,8 @@
       </div>
       <input th:value="#{login.boton}" type="submit" name="login" id="Actualizar" class="btn btn-block login-btn mb-4">
     </form>
-  </div>
+  </div>-->
 
-  <script th:src="@{/js/myJavaScript.js}" src="../static/js/myJavaScript.js" type="module"></script>
+<script th:src="@{/js/myJavaScript.js}" src="../static/js/myJavaScript.js" type="module"></script>
 </body>
 </html>

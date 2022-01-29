@@ -34,4 +34,12 @@ public class Grupo implements Serializable {
     //Relacion de uno a muchos con la tabla student_has_subject
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "grupo")
     private List<ScheduleHasGrupo> scheduleHasGrupo;
+
+    public Grupo(int number, String classroom, String hours, Subject subject, Teacher teacher) {
+        this.number = number;
+        this.classroom = classroom;
+        this.hours = hours;
+        this.subject = subject;
+        this.teacher = teacher;
+    }
 }

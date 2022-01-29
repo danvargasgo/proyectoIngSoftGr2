@@ -29,13 +29,13 @@ public class SubjectServiceImpl implements SubjectService{
 
     @Override
     public List<Subject> searchSubjectsByGrupos(List<Grupo> grupos) {
-        List<Subject> subjects = new ArrayList<>();
+        /*List<Subject> subjects = new ArrayList<>();
         for (int i = 0; i < grupos.size(); i++) {
             Subject subject = subjectRepository.searchSubjectsByCode(grupos.get(i).getSubject());
             if (subjects.contains(subject) == false) {
                 subjects.add(subject);
             }
-        }
-        return subjects;
+        }*/
+        return null;
     }
 }
