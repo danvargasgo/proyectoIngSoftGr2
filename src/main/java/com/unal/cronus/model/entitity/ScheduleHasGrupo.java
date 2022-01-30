@@ -17,14 +17,14 @@ public class ScheduleHasGrupo implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "id_schedule", nullable = false, updatable = false)
+    @JoinColumn(name = "id_schedule", nullable = false)
     private Schedule schedule;
 
     @Id
     @ManyToOne
     @JoinColumns({
-            @JoinColumn(name = "grupo_number", referencedColumnName = "number", nullable = false, updatable = false),
-            @JoinColumn(name = "grupo_subject_code", referencedColumnName = "subject_code", nullable = false, updatable = false)
+            @JoinColumn(name = "grupo_number", referencedColumnName = "number", nullable = false),
+            @JoinColumn(name = "grupo_subject_code", referencedColumnName = "subject_code", nullable = false)
     })
     private Grupo grupo;
 

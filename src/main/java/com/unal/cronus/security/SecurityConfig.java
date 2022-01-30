@@ -35,7 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .formLogin().loginPage("/login").defaultSuccessUrl("/private/",true).failureUrl("/login?error=true")
                     .loginProcessingUrl("/login-post").permitAll()
                 .and()
-                    .logout().logoutUrl("/logout").logoutSuccessUrl("/public/index");
+                    .logout().logoutUrl("/logout").logoutSuccessUrl("/public/index")
+                .and()
+                    .csrf().disable().cors();
     }
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder(){
