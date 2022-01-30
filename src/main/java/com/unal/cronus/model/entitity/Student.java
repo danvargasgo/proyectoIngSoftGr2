@@ -24,10 +24,6 @@ public class Student extends User implements Serializable {
     private Schedule schedule;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
-    private List<Question> questions;
-    
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")
     private List<StudentHasSubject> studentHasSubject;
     
 

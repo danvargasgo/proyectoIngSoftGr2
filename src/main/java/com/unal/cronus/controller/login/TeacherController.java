@@ -113,11 +113,10 @@ public class TeacherController {
         }
     }
 
-    @PostMapping("/group/delete/")
-    public String deleteGroup(@RequestParam(value = "number") int number,@RequestParam(value = "code") int code ){
+    @GetMapping("/group/delete/{grupoNumber}/{grupoSubject}")
+    public String deleteGroup(@PathVariable int grupoNumber, @PathVariable int grupoSubject){
+        grupoService.delete(grupoService.findByNumberAndSubject(grupoNumber, subjectService.searchSubjectsByCode(grupoSubject)));
 
         return "redirect:/private/teacher";
     }
-
-
 }

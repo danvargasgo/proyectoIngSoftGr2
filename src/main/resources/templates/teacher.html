@@ -52,12 +52,7 @@
           <a class="btn btn-warning" th:href="@{/private/teacher/group/edit/{grupoNumber}/{grupoSubject}(grupoNumber=${group.number},grupoSubject=${group.subject.code})}">Editar </a>
         </td>
         <td>
-          <form th:action="@{/private/teacher/group/delete/}" method="post" >
-            <input th:name="number" type="hidden" name="number" th:value="${group.number}"/>
-            <input th:name="code"  type="hidden" name="code" th:value="${group.subject.code}"/>
-            <button type="submit" class="btn btn-danger">Eliminar
-            </button>
-          </form>
+          <a class="btn btn-danger" th:href="@{/private/teacher/group/delete/{grupoNumber}/{grupoSubject}(grupoNumber=${group.number},grupoSubject=${group.subject.code})}">Borrar</a>
         </td>
       </tr>
       </tbody>

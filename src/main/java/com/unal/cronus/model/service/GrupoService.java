@@ -10,5 +10,5 @@ public interface GrupoService extends GenericService<Grupo,Integer>{
     /*List<Grupo> searchGruposTeacher(String email_teacher);*/
     List<Grupo> findGrupoByNumber(int number);
     Grupo findByNumberAndSubject(int number, Subject subject);
-    void delete(Grupo enity);
+    void delete(Grupo grupo);
 }
