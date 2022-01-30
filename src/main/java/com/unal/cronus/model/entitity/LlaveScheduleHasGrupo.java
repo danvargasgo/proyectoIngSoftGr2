@@ -9,5 +9,5 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class LlaveScheduleHasGrupo implements Serializable {
     private int schedule;
-    private Grupo grupo;
+    private LlaveGrupo grupo;
 }

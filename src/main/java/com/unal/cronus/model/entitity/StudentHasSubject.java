@@ -17,12 +17,12 @@ public class StudentHasSubject implements Serializable {
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "student_email", nullable = false, updatable = false)
+    @JoinColumn(name = "student_email", nullable = false)
     private Student student;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "subject_code", nullable = false, updatable = false)
+    @JoinColumn(name = "subject_code", nullable = false)
     private Subject subject;
 
 
