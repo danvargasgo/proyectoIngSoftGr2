@@ -1,5 +1,6 @@
 package com.unal.cronus.model.repository;
 
+import com.unal.cronus.model.entitity.Grupo;
 import com.unal.cronus.model.entitity.Subject;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

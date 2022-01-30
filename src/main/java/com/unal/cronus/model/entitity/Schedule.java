@@ -16,14 +16,8 @@ public class Schedule implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idSchedule;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "schedule_has_group",
-            joinColumns = @JoinColumn(name = "schedule_id", referencedColumnName = "idSchedule"),
-            inverseJoinColumns = {@JoinColumn(name = "grupo_number", referencedColumnName = "number"),
-                    @JoinColumn(name = "subject_code", referencedColumnName = "subject_code")}
-    )
-    private List<Grupo> grupos;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "schedule")
+    private List<ScheduleHasGrupo> scheduleHasGrupo;
 
     public Schedule(Integer idSchedule) {
         this.idSchedule = idSchedule;

@@ -1,11 +1,13 @@
 package com.unal.cronus.model.service;
 
+import com.unal.cronus.model.entitity.Grupo;
 import com.unal.cronus.model.entitity.Subject;
 import com.unal.cronus.model.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -23,5 +25,17 @@ public class SubjectServiceImpl implements SubjectService{
     @Transactional(readOnly = true)
     public Subject searchSubjectsByCode(int code) {
         return subjectRepository.searchSubjectsByCode(code);
+    }
+
+    @Override
+    public List<Subject> searchSubjectsByGrupos(List<Grupo> grupos) {
+        /*List<Subject> subjects = new ArrayList<>();
+        for (int i = 0; i < grupos.size(); i++) {
+            Subject subject = subjectRepository.searchSubjectsByCode(grupos.get(i).getSubject());
+            if (subjects.contains(subject) == false) {
+                subjects.add(subject);
+            }
+        }*/
+        return null;
     }
 }

@@ -12,7 +12,7 @@
     <script th:src="@{/js/jquery.js}" src="../static/js/jquery.js"></script>
     <script th:src="@{/js/bootstrap.js}" src="../static/js/bootstrap.js"></script>
 </head>
-<body style="height:">
+<body>
 <header class="sticky-top bg-white" >
     <div class="container-fluid  " >
         <div class="row border border-dark " style="align-items:center ">
@@ -30,10 +30,10 @@
             </div>
 
             <div class="container col-2" style="align-items:center">
-                <input type="submit" value="Seleccionar asignatura" class="btn btn-dark">
+                <a th:href="@{/private/student/addsubject/{student_email}/{subject_code} (student_email=${session.user.email},subject_code=${subject.code})}" class="btn btn-dark"><small>Seleccionar Asignatura</small></a>
             </div>
             <div class="container col-2" style="align-items:center">
-                <input type="submit" value="Eliminar asignatura" class="btn btn-dark">
+                <a th:href="@{/private/student/addsubject/{student_email}/{subject_code} (student_email=${session.user.email},subject_code=${subject.code})}" class="btn btn-dark"><small>Eliminar Asignatura</small></a>
             </div>
 
         </div>
