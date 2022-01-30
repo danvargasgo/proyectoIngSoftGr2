@@ -31,6 +31,15 @@ public class Grupo implements Serializable {
     @JoinColumn(name = "teacher_email", nullable = false, updatable = false)
     private Teacher teacher;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "grupos")
-    private List<Schedule> schedules;
+    //Relacion de uno a muchos con la tabla student_has_subject
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "grupo")
+    private List<ScheduleHasGrupo> scheduleHasGrupo;
+
+    public Grupo(int number, String classroom, String hours, Subject subject, Teacher teacher) {
+        this.number = number;
+        this.classroom = classroom;
+        this.hours = hours;
+        this.subject = subject;
+        this.teacher = teacher;
+    }
 }

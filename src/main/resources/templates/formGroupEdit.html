@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Página Profesor</title>
+    <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/login.css}" href="../static/css/login.css">
+</head>
+<body>
+
+<div class="container text-center mt-5">
+    <h2>Editar</h2>
+    <form th:action="@{/private/teacher/group/edit}" th:object="${grupoDto}" method="post" >
+
+        <div class="form-group">
+            <label for="classroom" class="sr-only" th:text="#{group.classroom}">Salon</label>
+            <input  type="text" class="form-control" th:field="*{classroom}"  id="classroom">
+            <div class='alert alert-danger' th_if="${#fields.hasErrors('classroom')}" th:errors="*{classroom}"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="hours" class="sr-only" th:text="#{group.hours}">Hora</label>
+            <input type="text" class="form-control" th:field="*{hours}"  id="hours">
+            <div class='alert alert-danger' th_if="${#fields.hasErrors('hours')}" th:errors="*{hours}"></div>
+        </div>
+        <div class="form-group">
+            <label for="number" class="sr-only" th:text="#{group.number}">Hora</label>
+            <input  type="text" class="form-control"  th:field="*{number}"  id="number" disabled>
+        </div>
+        <div class="form-group">
+            <label for="subjectCode" class="sr-only" th:text="#{group.subjectCode}">Hora</label>
+            <input type="text" class="form-control" th:field="*{subjectCode}"  id="subjectCode" disabled>
+        </div>
+        <input th:name="number" type="hidden" name="number" th:value="${grupoDto.number}"/>
+        <input th:name="code"  type="hidden" name="code" th:value="${grupoDto.subjectCode}"/>
+        <input th:value="#{signup.boton}" type="submit" name="formGroup" id="formGroup" class="btn btn-block btn-primary mb-4" value="Editar">
+
+    </form>
+</div>
+
+
+
+
+<script th:src="@{/js/myJavaScript.js}" src="../static/js/myJavaScript.js" type="module"></script>
+</body>
+</html>
