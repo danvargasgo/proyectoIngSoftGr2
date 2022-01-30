@@ -21,7 +21,6 @@ public class Student extends User implements Serializable {
     @JoinColumn(
             name = "id_schedule"
     )
-
     private Schedule schedule;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "student")

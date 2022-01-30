@@ -1,8 +1,9 @@
 package com.unal.cronus.controller.login;
 
-import com.unal.cronus.model.entitity.Student;
-import com.unal.cronus.model.entitity.StudentHasSubject;
-import com.unal.cronus.model.entitity.Subject;
+import com.unal.cronus.model.dto.GrupoDto;
+import com.unal.cronus.model.entitity.*;
+import com.unal.cronus.model.repository.GrupoNicheRespository;
+import com.unal.cronus.model.service.ScheduleHasGrupoService;
 import com.unal.cronus.model.service.StudentHasSubjectService;
 import com.unal.cronus.model.service.StudentService;
 import com.unal.cronus.model.service.SubjectService;
@@ -28,6 +29,12 @@ public class StudentController{
 
     @Autowired
     private StudentHasSubjectService studentHasSubjectService;
+
+    @Autowired
+    private ScheduleHasGrupoService scheduleHasGrupoService;
+
+    @Autowired
+    private GrupoNicheRespository grupoNicheRespository;
 
     @GetMapping()
     public String showStudentMainPage(Model model, Authentication auth){
@@ -66,4 +73,53 @@ public class StudentController{
 
         return "redirect:/private/student";
     }
+
+    @GetMapping("/schedule")
+    @ResponseBody
+    public List<GrupoDto> getSchedule(Authentication auth) {
+        Student student = studentService.searchById(auth.getName());
+        List<ScheduleHasGrupo> scheduleHasGrupos = student.getSchedule().getScheduleHasGrupo();
+        List<GrupoDto> gruposMapped = new ArrayList<>();
+
+        for (int i = 0; i < scheduleHasGrupos.size(); i++) {
+            Grupo grupo = scheduleHasGrupos.get(i).getGrupo();
+            GrupoDto grupoDto = new GrupoDto();
+            grupoDto.setNumber(grupo.getNumber());
+            grupoDto.setClassroom(grupo.getClassroom());
+            grupoDto.setHours(grupo.getHours());
+            grupoDto.setTeacherName(grupo.getTeacher().getName());
+            grupoDto.setTeacherLastName(grupo.getTeacher().getLastName());
+            grupoDto.setSubjectCode(grupo.getSubject().getCode());
+            grupoDto.setSubjectName(grupo.getSubject().getName());
+
+            gruposMapped.add(grupoDto);
+        }
+
+        return gruposMapped;
+    }
+
+    @PostMapping("/schedule")
+    @ResponseBody
+    public String saveSchedule(@RequestBody GrupoDto grupoDto, Authentication auth) {
+        Schedule schedule = studentService.searchById(auth.getName()).getSchedule();
+        Grupo grupo = grupoNicheRespository.searchGrupoByNumberAndSubjectCode(grupoDto.getNumber(),grupoDto.getSubjectCode());
+        if (scheduleHasGrupoService.scheduleHasSubject(new ScheduleHasGrupo(schedule, grupo))){
+            // Ya existe un grupo de esa materia en el horario
+            return "FAIL";
+        }else{
+            scheduleHasGrupoService.saveScheduleHasGrupo(new ScheduleHasGrupo(schedule, grupo));
+            return "OK";
+        }
+
+    }
+
+    @DeleteMapping("/schedule")
+    @ResponseBody
+    public void deleteSchedule(@RequestBody GrupoDto grupoDto, Authentication auth){
+        Schedule schedule = studentService.searchById(auth.getName()).getSchedule();
+        Grupo grupo = grupoNicheRespository.searchGrupoByNumberAndSubjectCode(grupoDto.getNumber(),grupoDto.getSubjectCode());
+        scheduleHasGrupoService.deleteScheduleHasGrupo(new ScheduleHasGrupo(schedule, grupo));
+    }
+
+
 }
