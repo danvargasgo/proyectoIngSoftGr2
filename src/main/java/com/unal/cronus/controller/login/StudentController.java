@@ -1,6 +1,6 @@
 package com.unal.cronus.controller.login;
 
-import com.unal.cronus.model.dto.GrupoDto;
+import com.unal.cronus.model.dto.GrupoNicheDto;
 import com.unal.cronus.model.entitity.*;
 import com.unal.cronus.model.repository.GrupoNicheRespository;
 import com.unal.cronus.model.service.ScheduleHasGrupoService;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -76,23 +75,23 @@ public class StudentController{
 
     @GetMapping("/schedule")
     @ResponseBody
-    public List<GrupoDto> getSchedule(Authentication auth) {
+    public List<GrupoNicheDto> getSchedule(Authentication auth) {
         Student student = studentService.searchById(auth.getName());
         List<ScheduleHasGrupo> scheduleHasGrupos = student.getSchedule().getScheduleHasGrupo();
-        List<GrupoDto> gruposMapped = new ArrayList<>();
+        List<GrupoNicheDto> gruposMapped = new ArrayList<>();
 
         for (int i = 0; i < scheduleHasGrupos.size(); i++) {
             Grupo grupo = scheduleHasGrupos.get(i).getGrupo();
-            GrupoDto grupoDto = new GrupoDto();
-            grupoDto.setNumber(grupo.getNumber());
-            grupoDto.setClassroom(grupo.getClassroom());
-            grupoDto.setHours(grupo.getHours());
-            grupoDto.setTeacherName(grupo.getTeacher().getName());
-            grupoDto.setTeacherLastName(grupo.getTeacher().getLastName());
-            grupoDto.setSubjectCode(grupo.getSubject().getCode());
-            grupoDto.setSubjectName(grupo.getSubject().getName());
+            GrupoNicheDto grupoNicheDto = new GrupoNicheDto();
+            grupoNicheDto.setNumber(grupo.getNumber());
+            grupoNicheDto.setClassroom(grupo.getClassroom());
+            grupoNicheDto.setHours(grupo.getHours());
+            grupoNicheDto.setTeacherName(grupo.getTeacher().getName());
+            grupoNicheDto.setTeacherLastName(grupo.getTeacher().getLastName());
+            grupoNicheDto.setSubjectCode(grupo.getSubject().getCode());
+            grupoNicheDto.setSubjectName(grupo.getSubject().getName());
 
-            gruposMapped.add(grupoDto);
+            gruposMapped.add(grupoNicheDto);
         }
 
         return gruposMapped;
@@ -100,9 +99,9 @@ public class StudentController{
 
     @PostMapping("/schedule")
     @ResponseBody
-    public String saveSchedule(@RequestBody GrupoDto grupoDto, Authentication auth) {
+    public String saveSchedule(@RequestBody GrupoNicheDto grupoNicheDto, Authentication auth) {
         Schedule schedule = studentService.searchById(auth.getName()).getSchedule();
-        Grupo grupo = grupoNicheRespository.searchGrupoByNumberAndSubjectCode(grupoDto.getNumber(),grupoDto.getSubjectCode());
+        Grupo grupo = grupoNicheRespository.searchGrupoByNumberAndSubjectCode(grupoNicheDto.getNumber(), grupoNicheDto.getSubjectCode());
         if (scheduleHasGrupoService.scheduleHasSubject(new ScheduleHasGrupo(schedule, grupo))){
             // Ya existe un grupo de esa materia en el horario
             return "FAIL";
@@ -115,9 +114,9 @@ public class StudentController{
 
     @DeleteMapping("/schedule")
     @ResponseBody
-    public void deleteSchedule(@RequestBody GrupoDto grupoDto, Authentication auth){
+    public void deleteSchedule(@RequestBody GrupoNicheDto grupoNicheDto, Authentication auth){
         Schedule schedule = studentService.searchById(auth.getName()).getSchedule();
-        Grupo grupo = grupoNicheRespository.searchGrupoByNumberAndSubjectCode(grupoDto.getNumber(),grupoDto.getSubjectCode());
+        Grupo grupo = grupoNicheRespository.searchGrupoByNumberAndSubjectCode(grupoNicheDto.getNumber(), grupoNicheDto.getSubjectCode());
         scheduleHasGrupoService.deleteScheduleHasGrupo(new ScheduleHasGrupo(schedule, grupo));
     }
 

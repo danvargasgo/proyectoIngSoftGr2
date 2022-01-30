@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class GrupoDto {
+public class GrupoNicheDto {
 
     private int number;
 
