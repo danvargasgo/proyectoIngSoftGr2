@@ -22,7 +22,7 @@
     </li>
   </ul>-->
 </div>
-<div class="container text-center">
+<div class="container text-center pt-4">
   <h2 >Tus grupos</h2>
 </div>
 
@@ -59,7 +59,11 @@
     </table>
   </div>
 </div>
-
+<div class="container">
+  <form th:action="@{/logout}" method="POST">
+    <button type="submit" class="btn btn-dark mt-3 mb-3">Cerrar Sesión</button>
+  </form>
+</div>
 
 
 
