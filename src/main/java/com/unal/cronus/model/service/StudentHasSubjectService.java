@@ -7,4 +7,5 @@ import java.util.List;
 public interface StudentHasSubjectService {
     void saveStudentHasSubject(StudentHasSubject studentHasSubject);
     List<StudentHasSubject> searchByEmail(String email);
+    void deleteStudentHasSubject(StudentHasSubject studentHasSubject);
 }
