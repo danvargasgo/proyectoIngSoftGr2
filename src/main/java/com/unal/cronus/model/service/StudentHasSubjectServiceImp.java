@@ -23,5 +23,9 @@ public class StudentHasSubjectServiceImp implements StudentHasSubjectService{
         return studentHasSubjectRepository.searchByEmail(email);
     }
 
+    @Override
+    public void deleteStudentHasSubject(StudentHasSubject studentHasSubject) {
+        studentHasSubjectRepository.delete(studentHasSubject);
+    }
 
 }

@@ -33,7 +33,7 @@
                 <a th:href="@{/private/student/addsubject/{student_email}/{subject_code} (student_email=${session.user.email},subject_code=${subject.code})}" class="btn btn-dark"><small>Seleccionar Asignatura</small></a>
             </div>
             <div class="container col-2" style="align-items:center">
-                <a th:href="@{/private/student/addsubject/{student_email}/{subject_code} (student_email=${session.user.email},subject_code=${subject.code})}" class="btn btn-dark"><small>Eliminar Asignatura</small></a>
+                <a th:href="@{/private/student/deletesubject/{student_email}/{subject_code} (student_email=${session.user.email},subject_code=${subject.code})}" class="btn btn-dark"><small>Eliminar Asignatura</small></a>
             </div>
 
         </div>
@@ -71,9 +71,6 @@
                 </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="container pt-4 pl-1 col-5 d-flex justify-content-center align-items-center" >
-            <input type="submit" value="Realizar pregunta" class="btn btn-dark" style="height:35px">
         </div>
 
     </div>

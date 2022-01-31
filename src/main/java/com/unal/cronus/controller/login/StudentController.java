@@ -73,6 +73,26 @@ public class StudentController{
         return "redirect:/private/student";
     }
 
+
+    @GetMapping("/deletesubject/{student_email}/{subject_code}")
+    public String deleteSubjectOfStudent(@PathVariable("student_email") String student_email, @PathVariable("subject_code") int subject_code, Model model){
+
+        Student student = studentService.searchById(student_email);
+        Subject subject = subjectService.searchSubjectsByCode(subject_code);
+        StudentHasSubject studentHasSubject= new StudentHasSubject(student,subject);
+
+        Schedule schedule = student.getSchedule();
+
+
+        // Eliminar posibles grupos seleccionados de la asignatura
+        scheduleHasGrupoService.deleteAllGruposOfSubjectFromSchedule(schedule, subject);
+
+        studentHasSubjectService.deleteStudentHasSubject(studentHasSubject);
+
+
+        return "redirect:/private/student";
+    }
+
     @GetMapping("/schedule")
     @ResponseBody
     public List<GrupoNicheDto> getSchedule(Authentication auth) {

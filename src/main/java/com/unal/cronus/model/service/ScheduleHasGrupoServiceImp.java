@@ -1,6 +1,8 @@
 package com.unal.cronus.model.service;
 
+import com.unal.cronus.model.entitity.Schedule;
 import com.unal.cronus.model.entitity.ScheduleHasGrupo;
+import com.unal.cronus.model.entitity.Subject;
 import com.unal.cronus.model.repository.ScheduleHasGrupoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +24,10 @@ public class ScheduleHasGrupoServiceImp implements ScheduleHasGrupoService {
     @Override
     public boolean scheduleHasSubject(ScheduleHasGrupo scheduleHasGrupo) {
         return scheduleHasGrupoRepository.scheduleHasSubject(scheduleHasGrupo.getSchedule().getIdSchedule(), scheduleHasGrupo.getGrupo().getSubject().getCode()) != null;
+    }
+
+    @Override
+    public void deleteAllGruposOfSubjectFromSchedule(Schedule schedule, Subject subject) {
+        scheduleHasGrupoRepository.deleteScheduleHasGrupo(schedule.getIdSchedule(), subject.getCode());
     }
 }
