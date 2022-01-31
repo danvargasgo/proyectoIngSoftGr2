@@ -91,7 +91,6 @@ public class TeacherController {
         grupoDto.setHours(grupo.getHours());
         grupoDto.setNumber(grupo.getNumber());
         grupoDto.setSubjectCode(grupo.getSubject().getCode());
-
         model.addAttribute("grupoFormDto",grupoDto);
         return "formGroupEdit";
     }

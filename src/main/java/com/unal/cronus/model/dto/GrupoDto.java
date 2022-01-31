@@ -19,10 +19,7 @@ public class GrupoDto {
     @NotEmpty
     @Pattern(regexp ="^[LMWJV]{1}:\\d{1,2}-\\d{1,2};[LMWJV]{1}:\\d{1,2}-\\d{1,2}$", message ="Este campo debe cumplir con el formato: L:7-9;W:7-9" )
     private String hours;
-
     @NotNull
     private Integer subjectCode;
-
     private Integer number;
-
 }
