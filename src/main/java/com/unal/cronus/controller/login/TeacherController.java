@@ -1,6 +1,7 @@
 package com.unal.cronus.controller.login;
 
 import com.unal.cronus.model.dto.GrupoDto;
+import com.unal.cronus.model.dto.GrupoFormDto;
 import com.unal.cronus.model.entitity.Grupo;
 import com.unal.cronus.model.entitity.Subject;
 import com.unal.cronus.model.entitity.Teacher;
@@ -71,9 +72,11 @@ public class TeacherController {
         }
         else{
             Subject subject = subjectService.searchSubjectsByCode(grupoDto.getSubjectCode());
+            List<Grupo> grupoSubject= subject.getGrupos();
             Optional<Teacher> oteacher = teacherService.findById(auth.getName());
             Teacher teacher = oteacher.get();
-            Grupo grupo = new Grupo(7,grupoDto.getClassroom(),grupoDto.getHours(),subject,teacher);
+
+            Grupo grupo = new Grupo(grupoSubject.size()+1,grupoDto.getClassroom(),grupoDto.getHours(),subject,teacher);
             grupoService.save(grupo);
             System.out.println("insercion realizada");
             return "redirect:/private/teacher";
@@ -82,27 +85,26 @@ public class TeacherController {
 
     @GetMapping("/group/edit/{number}/{code}")
     public String showFormGroupEdit(@PathVariable int number, @PathVariable int code, Model model){
-        GrupoDto grupoDto = new GrupoDto();
+        GrupoFormDto grupoDto = new GrupoFormDto();
         Grupo grupo = grupoService.findByNumberAndSubject(number,subjectService.searchSubjectsByCode(code));
         grupoDto.setClassroom(grupo.getClassroom());
         grupoDto.setHours(grupo.getHours());
         grupoDto.setNumber(grupo.getNumber());
         grupoDto.setSubjectCode(grupo.getSubject().getCode());
 
-        model.addAttribute("grupoDto",grupoDto);
+        model.addAttribute("grupoFormDto",grupoDto);
         return "formGroupEdit";
     }
 
     @PostMapping("/group/edit")
-    public String saveGroupEdit(@Valid GrupoDto grupoDto, BindingResult result,Authentication auth,@RequestParam(value = "number") int number,@RequestParam(value = "code") int code){
+    public String saveGroupEdit(@Valid GrupoFormDto grupoDto, BindingResult result,Authentication auth,@RequestParam(value = "number") int number,@RequestParam(value = "code") int code, Model model){
 
         if(result.hasErrors()){
-            System.out.println("hola");
+            grupoDto.setSubjectCode(code);
+            model.addAttribute("grupoFormDto",grupoDto);
             return "/formGroupEdit";
         }
         else{
-            System.out.println(number);
-            System.out.println(code);
             Subject subject = subjectService.searchSubjectsByCode(code);
             Optional<Teacher> oteacher = teacherService.findById(auth.getName());
             Teacher teacher = oteacher.get();
