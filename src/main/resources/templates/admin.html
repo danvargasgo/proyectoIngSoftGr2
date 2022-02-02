@@ -1,10 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.w3.org/1999/xhtml" >
 <head>
-    <meta charset="UTF-8">
-    <title>Página Administrador</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:src="@{webjars/sweetalert2/7.28.10/dist/sweetalert2.min.css}">
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <title>Página Admin</title>
 </head>
 <body>
-    <H1>Página admin</H1>
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-8 border border-dark rounded">
+            <!-- Cuerpo de la pagina del admin -->
+            <p th:if="${mensaje != null}" th:text="${mensaje}"></p>
+        </div>
+
+        <div class="col-4 border border-dark rounded">
+            <div class="container border border-dark mt-3" style="background-color:#d1d1e0">
+                <h6>Buscar Asignaturas</h6>
+            </div>
+            <p align="justify">Ingresa un nombre o código de la asignatura que quieras buscar. Si ingresas
+                un código y un nombre, la búsqueda se realizará únicamente por código.</p>
+            <br>
+
+            <form th:action="@{/private/student}" method="post">
+
+                <label>Ingresa el código de la asignatura:</label>
+                <center>
+                    <input class="mw-100 mt-2" type="number" th:name="code" th:value="${param.code}" placeholder="Buscar Por Código">
+                </center>
+                <br>
+                <label >Ingresa el nombre de la asignatura:</label>
+                <center>
+                    <input class="mw-100 mt-2" type="text" th:name="keyword" th:value="${param.keyword}" placeholder="Buscar Por Nombre"/>
+                </center>
+                <br>
+                <center>
+                    <input class="mw-100 btn btn-dark" type="submit" value="Buscar"/>
+                </center>
+            </form>
+            <br>
+            <p>Asignaturas encontradas:</p>
+            <div class="table-responsive">
+                <table class="table table-bordered border-dark">
+                    <tbody>
+                    <tr th:each="subject : ${subjects}">
+                        <td>
+                            <a th:href="@{/private/student/subject/{code}(code=${subject.code})}">
+                                <span th:text="${subject.name}"></span>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Optional JavaScript-->
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script type="text/javascript" th:src="@{/js/student.js}"></script>
 </body>
+<div class="container">
+    <form th:action="@{/logout}" method="POST">
+        <button type="submit" class="btn btn-dark mt-3 mb-3">Cerrar Sesión</button>
+    </form>
+</div>
 </html>
