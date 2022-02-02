@@ -27,15 +27,11 @@ public class Subject implements Serializable {
 
     private String prerequisite;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
+    @OneToMany(/*cascade = CascadeType.ALL,*/ mappedBy = "subject")
     private List<Grupo> grupos;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
-    private List<Question> questions;
-    
-
     //Relacion de uno a muchos con la tabla student_has_subject
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "subject")
+    @OneToMany(/*cascade = CascadeType.ALL,*/ mappedBy = "subject")
     private List<StudentHasSubject> studentHasSubject;
 
     public Subject(int code, String name, String credits, String description, String prerequisite) {

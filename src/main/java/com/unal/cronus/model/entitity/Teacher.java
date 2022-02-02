@@ -16,14 +16,11 @@ import java.util.Objects;
 public class Teacher extends User implements Serializable {
     private String faculty;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher",fetch = FetchType.EAGER)
+    @OneToMany(/*cascade = CascadeType.ALL,*/ mappedBy = "teacher",fetch = FetchType.EAGER)
     private List<Grupo> grupos;
 
     public Teacher(String email, String name, String lastName, String password, TypeUser typeUser, String faculty) {
         super(email, name, lastName, password, typeUser);
         this.faculty = faculty;
     }
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "teacher")
-    private List<Question> questions;
 }

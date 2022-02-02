@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"  xmlns:th="http://www.w3.org/1999/xhtml" >
+<html lang="en"  xmlns:th="http://www.thymeleaf.org" >
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -24,21 +24,28 @@
                 <h6>Asignaturas Seleccionadas</h6>
             </div>
 
-            <div class="container border border-dark rounded-bottom" style="overflow-x:auto;white-space: nowrap;">
 
+            <div class="container border border-dark rounded-bottom" style="overflow-x:auto;white-space: nowrap;">
+                <span th:if="${selectedsubjects != null}">
                 <!-- Se usa el span para que tanto el boton como lista acceder a la asignatura, ademas da un
                  poco de espacio entre las asignaturas-->
                 <span th:each="selectedsubject: ${selectedsubjects}">
-                <button th:text="${selectedsubject.subject.name}" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                <button th:text="${selectedsubject.subject.name}" class="btn btn-secondary dropdown-toggle"
+                        type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                 </button>
                 <ul class="dropdown-menu overflow-auto" aria-labelledby="dropdownMenuButton1">
                     <li th:each="grupo: ${selectedsubject.subject.grupos}">
-                        <a class="dropdown-item" th:onclick="agregarGrupoAHorario([[${grupo.number}]] ,[[${grupo.hours}]], [[${grupo.subject.name}]], [[${grupo.teacher.name}]], [[${grupo.teacher.lastName}]], [[${grupo.subject.code}]])"
+                        <a class="dropdown-item"
+                           th:onclick="agregarGrupoAHorario([[${grupo.number}]] ,[[${grupo.hours}]], [[${grupo.subject.name}]], [[${grupo.teacher.name}]], [[${grupo.teacher.lastName}]], [[${grupo.subject.code}]])"
                            th:text="'Grupo '+${grupo.number}"></a>
                     </li>
                 </ul>
                 </span>
+                </span>
+                <span class="alert alert-info" th:if="${#lists.isEmpty(selectedsubjects)}" th:text="'No hay asignaturas seleccionadas, añade una con el buscador'">
+                </span>
             </div>
+
 
             <br>
 

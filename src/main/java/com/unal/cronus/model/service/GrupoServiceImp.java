@@ -52,8 +52,7 @@ public class GrupoServiceImp implements GrupoService{
 
     @Override
     @Transactional
-    public void delete(Grupo enity) {
-        grupoRepository.delete(enity);
-
+    public void delete(Grupo grupo) {
+        grupoRepository.delete(grupo);
     }
 }
