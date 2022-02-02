@@ -6,6 +6,7 @@ import com.unal.cronus.model.entitity.Grupo;
 import com.unal.cronus.model.entitity.Subject;
 import com.unal.cronus.model.entitity.Teacher;
 import com.unal.cronus.model.service.GrupoService;
+import com.unal.cronus.model.service.ScheduleHasGrupoService;
 import com.unal.cronus.model.service.SubjectService;
 import com.unal.cronus.model.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class TeacherController {
     private SubjectService subjectService;
     @Autowired
     private TeacherService teacherService;
+    @Autowired
+    private ScheduleHasGrupoService scheduleHasGrupoService;
 
     @GetMapping()
     public String showTeacherMainPage(Model model, Authentication auth){
@@ -108,6 +111,10 @@ public class TeacherController {
             Optional<Teacher> oteacher = teacherService.findById(auth.getName());
             Teacher teacher = oteacher.get();
             Grupo grupo = new Grupo(number,grupoDto.getClassroom(),grupoDto.getHours(),subject,teacher);
+
+            // Eliminar en los horarios el grupo actualizado por el docente
+            scheduleHasGrupoService.deleteGrupoOnAllSchedules(number, code);
+
             grupoService.save(grupo);
             System.out.println("actualizacion realizada");
             return "redirect:/private/teacher";

@@ -30,4 +30,9 @@ public class ScheduleHasGrupoServiceImp implements ScheduleHasGrupoService {
     public void deleteAllGruposOfSubjectFromSchedule(Schedule schedule, Subject subject) {
         scheduleHasGrupoRepository.deleteScheduleHasGrupo(schedule.getIdSchedule(), subject.getCode());
     }
+
+    @Override
+    public void deleteGrupoOnAllSchedules(int numberGrupo, int subjectCode) {
+        scheduleHasGrupoRepository.deleteGrupoOnAllSchedules(numberGrupo, subjectCode);
+    }
 }

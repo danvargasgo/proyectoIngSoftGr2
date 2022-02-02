@@ -21,4 +21,11 @@ public interface ScheduleHasGrupoRepository extends JpaRepository<ScheduleHasGru
     public void deleteScheduleHasGrupo (@Param("scheduleId") int scheduleId,@Param("subjectCode") int SubjectCode);
 
 
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM schedule_has_grupo WHERE grupo_number=:numberGrupo AND grupo_subject_code=:subjectCode",nativeQuery = true)
+    public void deleteGrupoOnAllSchedules(@Param("numberGrupo")int numberGrupo, @Param("subjectCode")int subjectCode);
+
+
+
 }

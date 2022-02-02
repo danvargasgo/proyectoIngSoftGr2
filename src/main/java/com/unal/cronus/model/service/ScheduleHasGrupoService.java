@@ -10,4 +10,5 @@ public interface ScheduleHasGrupoService {
     void deleteScheduleHasGrupo(ScheduleHasGrupo scheduleHasGrupo);
     boolean scheduleHasSubject(ScheduleHasGrupo scheduleHasGrupo);
     void deleteAllGruposOfSubjectFromSchedule(Schedule schedule, Subject subject);
+    void deleteGrupoOnAllSchedules(int numberGrupo, int subjectCode);
 }

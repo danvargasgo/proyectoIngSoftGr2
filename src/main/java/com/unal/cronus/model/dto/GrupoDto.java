@@ -13,7 +13,7 @@ import javax.validation.constraints.Pattern;
 @AllArgsConstructor
 public class GrupoDto {
     @NotEmpty
-    @Pattern(regexp = "Edificio \\d{3}, salón \\d{3}", message = "Este campo debe cumplir con el formato: Edificio 000, salón 000")
+    @Pattern(regexp = "^Edificio \\d{3}, salón \\d{3}$|^No informado$", message = "Este campo debe cumplir con el formato: Edificio 000, salón 000 o No informado" )
 
     private String classroom;
     @NotEmpty
