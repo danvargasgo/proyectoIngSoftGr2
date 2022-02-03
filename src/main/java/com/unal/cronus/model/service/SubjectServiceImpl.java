@@ -38,4 +38,17 @@ public class SubjectServiceImpl implements SubjectService{
         }*/
         return null;
     }
+
+    @Override
+    public List<Integer> findSubjectsCodes(List<Grupo> grupos) {
+        List<Integer> subjectsCodes = new ArrayList<Integer>();
+
+        for (Grupo group : grupos) {
+            if (!subjectsCodes.contains(group.getSubject().getCode())) {
+                subjectsCodes.add(group.getSubject().getCode());
+            }
+        }
+
+        return subjectsCodes;
+    }
 }

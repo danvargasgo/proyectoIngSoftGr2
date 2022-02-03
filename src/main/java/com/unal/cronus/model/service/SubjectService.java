@@ -10,4 +10,5 @@ public interface SubjectService {
     List<Subject> searchSubjectsByName(String keyword);
     Subject searchSubjectsByCode(int code);
     List<Subject> searchSubjectsByGrupos(List<Grupo> grupos);
+    List<Integer> findSubjectsCodes(List<Grupo> grupos);
 }
