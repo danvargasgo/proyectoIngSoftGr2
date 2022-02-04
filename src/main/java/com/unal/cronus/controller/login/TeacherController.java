@@ -63,15 +63,26 @@ public class TeacherController {
 
     }*/
     @GetMapping("/group/save")
-    public String showFormGroup(Model model){
+    public String showFormGroup(Model model, Authentication auth){
+        Optional<Teacher> oteacher = teacherService.findById(auth.getName());
+        Teacher teacher = oteacher.get();
+        List<Grupo> groups = teacher.getGrupos();
+
+        model.addAttribute("subjectsCodes", subjectService.findSubjectsCodes(groups));
         model.addAttribute("grupoDto",new GrupoDto());
+
         return "formGroup";
     }
     @PostMapping("/group/save")
-    public String saveGroup(@Valid GrupoDto grupoDto, BindingResult result,Authentication auth){
+    public String saveGroup(@Valid GrupoDto grupoDto, BindingResult result,Authentication auth, Model model){
 
         if(result.hasErrors()){
-            return "/formGroup";
+            Optional<Teacher> oteacher = teacherService.findById(auth.getName());
+            Teacher teacher = oteacher.get();
+            List<Grupo> groups = teacher.getGrupos();
+
+            model.addAttribute("subjectsCodes", subjectService.findSubjectsCodes(groups));
+            return "formGroup";
         }
         else{
             Subject subject = subjectService.searchSubjectsByCode(grupoDto.getSubjectCode());
