@@ -28,4 +28,14 @@ public class StudentHasSubjectServiceImp implements StudentHasSubjectService{
         studentHasSubjectRepository.delete(studentHasSubject);
     }
 
+    @Override
+    public List<Object[]> searchTop3Subjects() {
+        return studentHasSubjectRepository.searchTop3Subjects();
+    }
+
+    @Override
+    public int countStudent(int subjectCode) {
+        return studentHasSubjectRepository.countStudent(subjectCode);
+    }
+
 }

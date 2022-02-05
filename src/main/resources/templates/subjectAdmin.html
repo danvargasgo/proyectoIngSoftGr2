@@ -24,30 +24,29 @@
             <h2 class="text-center">Reporte estadístico</h2>
             <br>
             <div class="container">
-                <h6>Asignaturas más seleccionadas:</h6>
+                <h3 th:text="${subject.name}"></h3>
             </div>
             <br>
+            <p>Número de estudiantes que seleccionaron esta materia: <span th:text="${cantidadSeleccionadas}"></span></p>
+            <p>Grupos más seleccionados por los estudiantes:</p>
             <div class="row justify-content-center container ">
                 <table class="table-bordered table-responsive text-center">
-                <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Número de selecciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="subject :${top3Subjects}">
-                        <td th:text="${subject[0]}"></td>
-                        <td th:text="${subject[2]}"></td>
+                    <thead>
+                    <tr>
+                        <th>Grupo</th>
+                        <th>Número de selecciones</th>
+                        <th>Docente</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="grupo:${gruposSeleccionados}">
+                        <td th:text="${grupo[0]}"></td>
+                        <td th:text="${grupo[1]}"></td>
+                        <td th:text="${grupo[2]}"></td>
                     </tr>
 
-                </tbody>
-            </table>
-                <div class="border border-dark container mt-5">
-                    <p>Promedio de créditos de los estudiantes: <span th:text="${promedios[0]}"></span></p>
-                    <p>Promedio de grupos en el horario de los estudiantes: <span th:text="${promedios[1]}"></span></p>
-                    <p>Promedio de horas de los estudiantes: <span th:text="${promedios[2]}"></span></p>
-                </div>
+                    </tbody>
+                </table>
             </div>
         </div>
 
@@ -59,7 +58,7 @@
                 un código y un nombre, la búsqueda se realizará únicamente por código.</p>
             <br>
 
-            <form th:action="@{/private/admin}" method="post">
+            <form th:action="@{/private/admin/subject/{code} (code = ${subject.code})}" method="post">
 
                 <label>Ingresa el código de la asignatura:</label>
                 <center>
@@ -103,8 +102,8 @@
 <script type="text/javascript" th:src="@{/js/student.js}"></script>
 </body>
 <div class="container">
-    <form th:action="@{/logout}" method="POST">
-        <button type="submit" class="btn btn-dark mt-3 mb-3">Cerrar Sesión</button>
+    <form th:action="@{/private/admin}" method="GET">
+        <button type="submit" class="btn btn-dark mt-3 mb-3">Volver</button>
     </form>
 </div>
 </html>

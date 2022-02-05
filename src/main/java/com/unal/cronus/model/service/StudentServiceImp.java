@@ -35,4 +35,9 @@ public class StudentServiceImp implements StudentService{
     public Student searchById(String student_email) {
         return studentRepository.searchById(student_email);
     }
+
+    @Override
+    public int numberStudents() {
+        return studentRepository.numberStudents();
+    }
 }
