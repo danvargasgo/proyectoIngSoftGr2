@@ -33,4 +33,9 @@ public class StudentHasSubjectServiceImp implements StudentHasSubjectService{
         return studentHasSubjectRepository.searchTop3Subjects();
     }
 
+    @Override
+    public int countStudent(int subjectCode) {
+        return studentHasSubjectRepository.countStudent(subjectCode);
+    }
+
 }

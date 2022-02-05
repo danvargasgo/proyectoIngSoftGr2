@@ -20,4 +20,7 @@ public interface StudentHasSubjectRepository extends JpaRepository<StudentHasSub
     @Query(value="SELECT name, subject_code, count(student_email) FROM student_has_subject join subject on subject_code = code group by subject_code order by count(student_email) desc limit 3",
             nativeQuery= true)
     List<Object[]> searchTop3Subjects();
+
+    @Query(value = "select count(*) from student_has_subject where subject_code = :subjectCode", nativeQuery = true)
+    int countStudent(@Param("subjectCode") int subjectCode);
 }

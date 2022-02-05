@@ -15,4 +15,7 @@ public interface StudentRepository extends JpaRepository<Student,String> {
 
     @Query(value="SELECT * FROM student join user on id_user=email WHERE email = :email", nativeQuery = true)
     Student searchById(@Param("email") String email);
+
+    @Query(value = "select count(id_user) from student", nativeQuery = true)
+    int numberStudents();
 }

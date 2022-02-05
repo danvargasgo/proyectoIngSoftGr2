@@ -7,6 +7,8 @@ import com.unal.cronus.model.repository.ScheduleHasGrupoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ScheduleHasGrupoServiceImp implements ScheduleHasGrupoService {
     @Autowired
@@ -34,5 +36,20 @@ public class ScheduleHasGrupoServiceImp implements ScheduleHasGrupoService {
     @Override
     public void deleteGrupoOnAllSchedules(int numberGrupo, int subjectCode) {
         scheduleHasGrupoRepository.deleteGrupoOnAllSchedules(numberGrupo, subjectCode);
+    }
+
+    @Override
+    public int sumCredits() {
+        return scheduleHasGrupoRepository.sumCredits();
+    }
+
+    @Override
+    public int countSubjects() {
+        return scheduleHasGrupoRepository.countSubjects();
+    }
+
+    @Override
+    public List<Object[]> selectedGroups(int subjectCode) {
+        return scheduleHasGrupoRepository.selectedGroups(subjectCode);
     }
 }
