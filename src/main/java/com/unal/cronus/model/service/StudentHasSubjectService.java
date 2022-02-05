@@ -8,4 +8,5 @@ public interface StudentHasSubjectService {
     void saveStudentHasSubject(StudentHasSubject studentHasSubject);
     List<StudentHasSubject> searchByEmail(String email);
     void deleteStudentHasSubject(StudentHasSubject studentHasSubject);
+    List<Object[]> searchTop3Subjects();
 }

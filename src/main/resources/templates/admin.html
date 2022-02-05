@@ -20,7 +20,27 @@
     <div class="row">
         <div class="col-8 border border-dark rounded">
             <!-- Cuerpo de la pagina del admin -->
-            <p th:if="${mensaje != null}" th:text="${mensaje}"></p>
+            <div class="container pt-3">
+            <center>
+                <h3>Reporte Estadístico</h3>
+                <br>
+            <table class="table table-responsive table-bordered">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Número de selecciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="subject :${top3Subjects}">
+                        <td th:text="${subject[0]}"></td>
+                        <td th:text="${subject[2]}"></td>
+                    </tr>
+
+                </tbody>
+            </table>
+            </center>
+            </div>
         </div>
 
         <div class="col-4 border border-dark rounded">
